@@ -17,11 +17,11 @@ public class AccountPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
 	
-	By logoutLink = By.linkText("Logout");
-	By search = By.name("search");
-	By searchIcon = By.cssSelector("div#search button");
-	By accSecHeaders = By.cssSelector("div#content h2");
-	
+	private By logoutLink = By.linkText("Logout");
+	private By search = By.name("search");
+	private By searchIcon = By.cssSelector("div#search button");
+	private By accSecHeaders = By.cssSelector("div#content h2");
+	private By acc = By.cssSelector("div#content h1");
 	
 	public AccountPage(WebDriver driver) {
 		this.driver = driver;
