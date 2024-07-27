@@ -9,6 +9,7 @@ public class F2 {
 	public void login() {
 		String name = "sanjay";
 		String pwd = "123456";
+		String role = "admin";
 		System.out.println("login is done");
 	}
 	
