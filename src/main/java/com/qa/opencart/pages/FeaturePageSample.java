@@ -9,4 +9,8 @@ public class FeaturePageSample {
 	public void feature2() {
 		System.out.println("feature2");
 	}
+	
+	public void feature3() {
+		System.out.println("feature3");
+	}
 }
