@@ -21,20 +21,20 @@ public class SearchResultsPage {
 		eleUtil = new ElementUtil(driver);
 	}
 
-	public boolean isSearchSuccessfull() {
+	public boolean isSearchSuccessful() {
 		List<WebElement> searchList = eleUtil.waitForElementsToBeVisible(productSearchLayout,
 				AppConstants.DEFAULT_LARGE_TIME_OUT);
 		if (searchList.size() > 0) {
-			System.out.println("Search is successfully done....");
+			System.out.println("Search is successfully done.....");
 			return true;
 		}
 		return false;
 	}
-	
+
 	public ProductInfoPage selectProduct(String mainProductName) {
 		By mainPrName = By.linkText(mainProductName);
 		eleUtil.doClick(mainPrName);
 		return new ProductInfoPage(driver);
 	}
-}
 
+}

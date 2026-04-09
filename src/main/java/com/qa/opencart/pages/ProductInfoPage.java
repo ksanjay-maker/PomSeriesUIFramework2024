@@ -1,6 +1,7 @@
 package com.qa.opencart.pages;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,18 +16,19 @@ public class ProductInfoPage {
 
 	private WebDriver driver;
 	private ElementUtil eleUtil;
-	private Map<String,String> productInfoMap;
+	
+	private Map<String, String> productInfoMap;
 	
 	private By productImages = By.cssSelector("ul.thumbnails img");
 	private By productMetaData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=1]/li");
 	private By productPriceData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=2]/li");
-	
+
 	public ProductInfoPage(WebDriver driver) {
 
 		this.driver = driver;
-		eleUtil = new ElementUtil(driver);
-
+		eleUtil = new ElementUtil(driver); 
 	}
+	
 	
 	public String getProductHeader(String mainProductName) {
 		String xpath = "//h1[text()='"+mainProductName+"']";
@@ -47,10 +49,14 @@ public class ProductInfoPage {
 		return eleUtil.waitForUrlContains(AppConstants.DEFAULT_TIME_OUT, searchKey);
 	}
 	
-	public Map<String,String> getProductMataData() {
-		List<WebElement> metaList = eleUtil.getElements(productMetaData);
-		productInfoMap = new HashMap<String,String>();
-		for(WebElement e : metaList) {
+//	Brand: Apple
+//	Product Code: Product 18
+//	Reward Points: 800
+//	Availability: In Stock
+	public Map<String, String> getProductMetaData() {
+		List<WebElement> metalist = eleUtil.getElements(productMetaData);
+		productInfoMap = new LinkedHashMap<String, String>();
+		for(WebElement e : metalist) {
 			String metaText = e.getText();
 			String meta[] = metaText.split(":");
 			String metaKey = meta[0].trim();
@@ -61,18 +67,5 @@ public class ProductInfoPage {
 		return productInfoMap;
 	}
 	
-	public Map<String,String> getProductPriceData(){
-		List<WebElement> priceList  = eleUtil.getElements(productPriceData);
-		productInfoMap = new HashMap<String,String>();
-		for(WebElement e : priceList) {
-			String priceText = e.getText();
-			String price[] = priceText.split(":");
-			String priceKey = price[0].trim();
-			String priceValue = price[1].trim();
-			productInfoMap.put(priceKey, priceValue);
-		}
-		productInfoMap.forEach((k,v) -> System.out.println(k+ ":" +v));
-		return productInfoMap;
-	}
 
 }
